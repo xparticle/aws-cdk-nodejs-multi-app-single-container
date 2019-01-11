@@ -4,10 +4,10 @@ import iam = require('@aws-cdk/aws-iam');
 import kms = require('@aws-cdk/aws-kms');
 
 class IAMStack extends cdk.Stack {
-    public readonly cproleRefProps: iam.RoleProps;
-    public readonly cbroleRefProps: iam.RoleProps;
-    public readonly kmskey1RefProps: kms.EncryptionKeyRefProps;
-    public readonly kmskey2RefProps: kms.EncryptionKeyRefProps;
+    // public readonly cproleRefProps: iam.RoleProps;
+    // public readonly cbroleRefProps: iam.RoleProps;
+    // public readonly kmskey1RefProps: kms.EncryptionKeyRefProps;
+    // public readonly kmskey2RefProps: kms.EncryptionKeyRefProps;
 
 
     constructor(parent: cdk.App, name: string, props?: cdk.StackProps) {
@@ -88,7 +88,7 @@ class IAMStack extends cdk.Stack {
 
 
 
-        this.cproleRefProps = vpc.export();
+        //this.cproleRefProps = vpc.export();
 
 
     }

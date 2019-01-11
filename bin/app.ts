@@ -1,13 +1,15 @@
-import ApigwVpcNlbStack from "./apigw_vpc_nlb";
+
 import VpcStack from "./vpc";
 
 
 import cdk = require('@aws-cdk/cdk');
+import NLBStack from "./nlb";
 
 const app = new cdk.App();
 
 
 const vpc = new VpcStack(app, 'Vpc');
-new ApigwVpcNlbStack(app, 'ApigwVpcNlbStack', { vpcRefProps: vpc.vpcRefProps });
+const nlb = new NLBStack(app,'Nlb',{ vpcRefProps: vpc.vpcRefProps });
+
 
 app.run();

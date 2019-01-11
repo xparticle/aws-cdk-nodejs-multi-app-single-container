@@ -1,0 +1,126 @@
+Resources:
+  LB8A12904C:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      LoadBalancerAttributes:
+        []
+      Scheme: internal
+      Subnets:
+        - Fn::Select:
+            - 0
+            - Fn::Split:
+                - ","
+                - Fn::ImportValue: Vpc:TheVPCPrivateSubnetIDsE53B48B1
+        - Fn::Select:
+            - 1
+            - Fn::Split:
+                - ","
+                - Fn::ImportValue: Vpc:TheVPCPrivateSubnetIDsE53B48B1
+        - Fn::Select:
+            - 2
+            - Fn::Split:
+                - ","
+                - Fn::ImportValue: Vpc:TheVPCPrivateSubnetIDsE53B48B1
+        - Fn::Select:
+            - 3
+            - Fn::Split:
+                - ","
+                - Fn::ImportValue: Vpc:TheVPCPrivateSubnetIDsE53B48B1
+        - Fn::Select:
+            - 4
+            - Fn::Split:
+                - ","
+                - Fn::ImportValue: Vpc:TheVPCPrivateSubnetIDsE53B48B1
+        - Fn::Select:
+            - 5
+            - Fn::Split:
+                - ","
+                - Fn::ImportValue: Vpc:TheVPCPrivateSubnetIDsE53B48B1
+      Type: network
+    Metadata:
+      aws:cdk:path: Nlb/LB/Resource
+  LBapi1listenerAAC7334B:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - TargetGroupArn:
+            Ref: LBapi1listenerapi1targetGroup89457BBD
+          Type: forward
+      LoadBalancerArn:
+        Ref: LB8A12904C
+      Port: 2000
+      Protocol: TCP
+    Metadata:
+      aws:cdk:path: Nlb/LB/api1_listener/Resource
+  LBapi1listenerapi1targetGroup89457BBD:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Port: 2000
+      Protocol: TCP
+      VpcId:
+        Fn::ImportValue: Vpc:TheVPCVpcIdD346CDBA
+      TargetGroupAttributes:
+        []
+      Targets:
+        []
+    Metadata:
+      aws:cdk:path: Nlb/LB/api1_listener/api1_targetGroup/Resource
+  LBapi2listener9434057D:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - TargetGroupArn:
+            Ref: LBapi2listenerapi2targetGroupF044D51E
+          Type: forward
+      LoadBalancerArn:
+        Ref: LB8A12904C
+      Port: 3000
+      Protocol: TCP
+    Metadata:
+      aws:cdk:path: Nlb/LB/api2_listener/Resource
+  LBapi2listenerapi2targetGroupF044D51E:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Port: 3000
+      Protocol: TCP
+      VpcId:
+        Fn::ImportValue: Vpc:TheVPCVpcIdD346CDBA
+      TargetGroupAttributes:
+        []
+      Targets:
+        []
+    Metadata:
+      aws:cdk:path: Nlb/LB/api2_listener/api2_targetGroup/Resource
+  LBapi3listenerC7F2EA36:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - TargetGroupArn:
+            Ref: LBapi3listenerapi3targetGroupAF4A1D8D
+          Type: forward
+      LoadBalancerArn:
+        Ref: LB8A12904C
+      Port: 4000
+      Protocol: TCP
+    Metadata:
+      aws:cdk:path: Nlb/LB/api3_listener/Resource
+  LBapi3listenerapi3targetGroupAF4A1D8D:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Port: 4000
+      Protocol: TCP
+      VpcId:
+        Fn::ImportValue: Vpc:TheVPCVpcIdD346CDBA
+      TargetGroupAttributes:
+        []
+      Targets:
+        []
+    Metadata:
+      aws:cdk:path: Nlb/LB/api3_listener/api3_targetGroup/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Modules: "@aws-cdk/aws-cloudwatch=0.22.0,@aws-cdk/aws-codedeploy-api=0.22.0,@aws\
+        -cdk/aws-ec2=0.22.0,@aws-cdk/aws-elasticloadbalancingv2=0.22.0,@aws-cdk\
+        /aws-iam=0.22.0,@aws-cdk/cdk=0.22.0,@aws-cdk/cx-api=0.22.0,jsii-runtime\
+        =node.js/v11.2.0"

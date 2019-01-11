@@ -3,7 +3,7 @@ import cdk = require('@aws-cdk/cdk');
 import ec2 = require('@aws-cdk/aws-ec2');
 
 class VPCStack extends cdk.Stack {
-    public readonly vpcRefProps: ec2.VpcNetworkRefProps;
+    public readonly vpcRefProps: ec2.VpcNetworkImportProps;
     constructor(parent: cdk.App, name: string, props?: cdk.StackProps) {
         super(parent, name, props);
 
