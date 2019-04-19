@@ -5,13 +5,17 @@ import kms = require('@aws-cdk/aws-kms');
 import ecs = require('@aws-cdk/aws-ecs');
 import ec2 = require('@aws-cdk/aws-ec2');
 import nlb = require('@aws-cdk/aws-elasticloadbalancingv2');
+import { NetworkLoadBalancerImportProps } from '@aws-cdk/aws-elasticloadbalancingv2';
 
 interface NLBStackProps {
     vpcRefProps: ec2.VpcNetworkImportProps;
 }
 
 class NLBStack extends cdk.Stack {
-
+    public readonly listener1: nlb.NetworkListener;
+    public readonly listener2: nlb.NetworkListener;
+    public readonly listener3: nlb.NetworkListener;
+    public readonly nlbRefProps: NetworkLoadBalancerImportProps;
     constructor(parent: cdk.App, name: string, props: NLBStackProps) {
         super(parent, name);
 
@@ -40,23 +44,13 @@ class NLBStack extends cdk.Stack {
 
         });
 
-        //** move this code block that adds targets to listener to ecs app */
-        
-        api1_listener.addTargets('api1_target', {
-            port: 2000,
-            //argets: [asg]
-            //protocol: ec2.Protocol.Tcp
-        });
-        api2_listener.addTargets('api2_target', {
-            port: 3000,
-            //protocol: ec2.Protocol.Tcp
-        });
-        api3_listener.addTargets('api3_target', {
-            port: 4000,
-            //protocol: ec2.Protocol.Tcp
-        });
-        
 
+        
+        this.listener1= api1_listener;
+        this.listener2= api2_listener;
+        this.listener3= api3_listener;
+
+        this.nlbRefProps=lb.export();
     }
 }
 
