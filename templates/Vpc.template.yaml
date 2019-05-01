@@ -8,9 +8,9 @@ Resources:
       InstanceTenancy: default
       Tags:
         - Key: Name
-          Value: Vpc/TheVPC
+          Value: VPC/TheVPC
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/Resource
+      aws:cdk:path: VPC/TheVPC/Resource
   TheVPCApplicationSubnet1SubnetA74226FF:
     Type: AWS::EC2::Subnet
     Properties:
@@ -21,13 +21,13 @@ Resources:
       MapPublicIpOnLaunch: false
       Tags:
         - Key: Name
-          Value: Vpc/TheVPC/ApplicationSubnet1
+          Value: VPC/TheVPC/ApplicationSubnet1
         - Key: aws-cdk:subnet-name
           Value: Application
         - Key: aws-cdk:subnet-type
           Value: Private
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/ApplicationSubnet1/Subnet
+      aws:cdk:path: VPC/TheVPC/ApplicationSubnet1/Subnet
   TheVPCApplicationSubnet1RouteTable0FE2A3D8:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -35,9 +35,9 @@ Resources:
         Ref: TheVPC92636AB0
       Tags:
         - Key: Name
-          Value: Vpc/TheVPC/ApplicationSubnet1
+          Value: VPC/TheVPC/ApplicationSubnet1
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/ApplicationSubnet1/RouteTable
+      aws:cdk:path: VPC/TheVPC/ApplicationSubnet1/RouteTable
   TheVPCApplicationSubnet1RouteTableAssociationBE311466:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -46,7 +46,7 @@ Resources:
       SubnetId:
         Ref: TheVPCApplicationSubnet1SubnetA74226FF
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/ApplicationSubnet1/RouteTableAssociation
+      aws:cdk:path: VPC/TheVPC/ApplicationSubnet1/RouteTableAssociation
   TheVPCApplicationSubnet1DefaultRouteC6DE6E60:
     Type: AWS::EC2::Route
     Properties:
@@ -56,7 +56,7 @@ Resources:
       NatGatewayId:
         Ref: TheVPCPublicSubnet1NATGatewayC61D892B
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/ApplicationSubnet1/DefaultRoute
+      aws:cdk:path: VPC/TheVPC/ApplicationSubnet1/DefaultRoute
   TheVPCPublicSubnet1Subnet770D4FF2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -67,13 +67,13 @@ Resources:
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: Vpc/TheVPC/PublicSubnet1
+          Value: VPC/TheVPC/PublicSubnet1
         - Key: aws-cdk:subnet-name
           Value: Public
         - Key: aws-cdk:subnet-type
           Value: Public
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/PublicSubnet1/Subnet
+      aws:cdk:path: VPC/TheVPC/PublicSubnet1/Subnet
   TheVPCPublicSubnet1RouteTable17DA183D:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -81,9 +81,9 @@ Resources:
         Ref: TheVPC92636AB0
       Tags:
         - Key: Name
-          Value: Vpc/TheVPC/PublicSubnet1
+          Value: VPC/TheVPC/PublicSubnet1
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/PublicSubnet1/RouteTable
+      aws:cdk:path: VPC/TheVPC/PublicSubnet1/RouteTable
   TheVPCPublicSubnet1RouteTableAssociationE5186D77:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -92,7 +92,7 @@ Resources:
       SubnetId:
         Ref: TheVPCPublicSubnet1Subnet770D4FF2
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/PublicSubnet1/RouteTableAssociation
+      aws:cdk:path: VPC/TheVPC/PublicSubnet1/RouteTableAssociation
   TheVPCPublicSubnet1DefaultRoute6D26543F:
     Type: AWS::EC2::Route
     Properties:
@@ -104,13 +104,13 @@ Resources:
     DependsOn:
       - TheVPCVPCGWC9B93E30
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/PublicSubnet1/DefaultRoute
+      aws:cdk:path: VPC/TheVPC/PublicSubnet1/DefaultRoute
   TheVPCPublicSubnet1EIP4412F690:
     Type: AWS::EC2::EIP
     Properties:
       Domain: vpc
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/PublicSubnet1/EIP
+      aws:cdk:path: VPC/TheVPC/PublicSubnet1/EIP
   TheVPCPublicSubnet1NATGatewayC61D892B:
     Type: AWS::EC2::NatGateway
     Properties:
@@ -122,17 +122,17 @@ Resources:
         Ref: TheVPCPublicSubnet1Subnet770D4FF2
       Tags:
         - Key: Name
-          Value: Vpc/TheVPC/PublicSubnet1
+          Value: VPC/TheVPC/PublicSubnet1
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/PublicSubnet1/NATGateway
+      aws:cdk:path: VPC/TheVPC/PublicSubnet1/NATGateway
   TheVPCIGWFA25CC08:
     Type: AWS::EC2::InternetGateway
     Properties:
       Tags:
         - Key: Name
-          Value: Vpc/TheVPC
+          Value: VPC/TheVPC
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/IGW
+      aws:cdk:path: VPC/TheVPC/IGW
   TheVPCVPCGWC9B93E30:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
@@ -141,7 +141,7 @@ Resources:
       InternetGatewayId:
         Ref: TheVPCIGWFA25CC08
     Metadata:
-      aws:cdk:path: Vpc/TheVPC/VPCGW
+      aws:cdk:path: VPC/TheVPC/VPCGW
   s3vpcendpoint:
     Type: AWS::EC2::VPCEndpoint
     Properties:
@@ -150,7 +150,7 @@ Resources:
         Ref: TheVPC92636AB0
       VpcEndpointType: Gateway
     Metadata:
-      aws:cdk:path: Vpc/s3_vpc_endpoint
+      aws:cdk:path: VPC/s3_vpc_endpoint
   ecrvpcendpoint:
     Type: AWS::EC2::VPCEndpoint
     Properties:
@@ -161,7 +161,7 @@ Resources:
         - Ref: TheVPCApplicationSubnet1SubnetA74226FF
       VpcEndpointType: Interface
     Metadata:
-      aws:cdk:path: Vpc/ecr_vpc_endpoint
+      aws:cdk:path: VPC/ecr_vpc_endpoint
   ecsagentvpcendpoint:
     Type: AWS::EC2::VPCEndpoint
     Properties:
@@ -172,7 +172,7 @@ Resources:
         - Ref: TheVPCApplicationSubnet1SubnetA74226FF
       VpcEndpointType: Interface
     Metadata:
-      aws:cdk:path: Vpc/ecs_agent_vpc_endpoint
+      aws:cdk:path: VPC/ecs_agent_vpc_endpoint
   ecstelemetryvpcendpoint:
     Type: AWS::EC2::VPCEndpoint
     Properties:
@@ -183,7 +183,7 @@ Resources:
         - Ref: TheVPCApplicationSubnet1SubnetA74226FF
       VpcEndpointType: Interface
     Metadata:
-      aws:cdk:path: Vpc/ecs_telemetry_vpc_endpoint
+      aws:cdk:path: VPC/ecs_telemetry_vpc_endpoint
   ecsvpcendpoint:
     Type: AWS::EC2::VPCEndpoint
     Properties:
@@ -194,7 +194,7 @@ Resources:
         - Ref: TheVPCApplicationSubnet1SubnetA74226FF
       VpcEndpointType: Interface
     Metadata:
-      aws:cdk:path: Vpc/ecs_vpc_endpoint
+      aws:cdk:path: VPC/ecs_vpc_endpoint
   ccvpcendpoint:
     Type: AWS::EC2::VPCEndpoint
     Properties:
@@ -205,39 +205,27 @@ Resources:
         - Ref: TheVPCApplicationSubnet1SubnetA74226FF
       VpcEndpointType: Interface
     Metadata:
-      aws:cdk:path: Vpc/cc_vpc_endpoint
+      aws:cdk:path: VPC/cc_vpc_endpoint
   CDKMetadata:
     Type: AWS::CDK::Metadata
     Properties:
-      Modules: "@aws-cdk/assets=0.28.0,@aws-cdk/assets-docker=0.28.0,@aws-cdk/aws-apig\
-        ateway=0.28.0,@aws-cdk/aws-applicationautoscaling=0.28.0,@aws-cdk/aws-a\
-        utoscaling=0.28.0,@aws-cdk/aws-autoscaling-common=0.28.0,@aws-cdk/aws-c\
-        ertificatemanager=0.28.0,@aws-cdk/aws-cloudformation=0.28.0,@aws-cdk/aw\
-        s-cloudwatch=0.28.0,@aws-cdk/aws-codedeploy-api=0.28.0,@aws-cdk/aws-ec2\
-        =0.28.0,@aws-cdk/aws-ecr=0.28.0,@aws-cdk/aws-ecs=0.28.0,@aws-cdk/aws-el\
-        asticloadbalancingv2=0.28.0,@aws-cdk/aws-events=0.28.0,@aws-cdk/aws-iam\
-        =0.28.0,@aws-cdk/aws-kms=0.28.0,@aws-cdk/aws-lambda=0.28.0,@aws-cdk/aws\
-        -logs=0.28.0,@aws-cdk/aws-route53=0.28.0,@aws-cdk/aws-s3=0.28.0,@aws-cd\
-        k/aws-s3-notifications=0.28.0,@aws-cdk/aws-servicediscovery=0.28.0,@aws\
-        -cdk/aws-sns=0.28.0,@aws-cdk/aws-sqs=0.28.0,@aws-cdk/cdk=0.28.0,@aws-cd\
-        k/cx-api=0.28.0,@aws-cdk/region-info=0.28.0,jsii-runtime=node.js/v11.2.\
-        0"
+      Modules: aws-cdk=0.29.0,@aws-cdk/assets=0.28.0,@aws-cdk/assets-docker=0.28.0,@aws-cdk/aws-apigateway=0.28.0,@aws-cdk/aws-applicationautoscaling=0.28.0,@aws-cdk/aws-autoscaling=0.28.0,@aws-cdk/aws-autoscaling-common=0.28.0,@aws-cdk/aws-certificatemanager=0.28.0,@aws-cdk/aws-cloudformation=0.28.0,@aws-cdk/aws-cloudwatch=0.28.0,@aws-cdk/aws-codedeploy-api=0.28.0,@aws-cdk/aws-ec2=0.28.0,@aws-cdk/aws-ecr=0.28.0,@aws-cdk/aws-ecs=0.28.0,@aws-cdk/aws-elasticloadbalancingv2=0.28.0,@aws-cdk/aws-events=0.28.0,@aws-cdk/aws-iam=0.28.0,@aws-cdk/aws-kms=0.28.0,@aws-cdk/aws-lambda=0.28.0,@aws-cdk/aws-logs=0.28.0,@aws-cdk/aws-route53=0.28.0,@aws-cdk/aws-s3=0.28.0,@aws-cdk/aws-s3-notifications=0.28.0,@aws-cdk/aws-servicediscovery=0.28.0,@aws-cdk/aws-sns=0.28.0,@aws-cdk/aws-sqs=0.28.0,@aws-cdk/cdk=0.28.0,@aws-cdk/cx-api=0.28.0,@aws-cdk/region-info=0.28.0,jsii-runtime=node.js/v11.2.0
 Outputs:
   TheVPCPublicSubnetIDs34A93164:
     Value:
       Ref: TheVPCPublicSubnet1Subnet770D4FF2
     Export:
-      Name: Vpc:TheVPCPublicSubnetIDs34A93164
+      Name: VPC:TheVPCPublicSubnetIDs34A93164
   TheVPCPrivateSubnetIDsE53B48B1:
     Value:
       Ref: TheVPCApplicationSubnet1SubnetA74226FF
     Export:
-      Name: Vpc:TheVPCPrivateSubnetIDsE53B48B1
+      Name: VPC:TheVPCPrivateSubnetIDsE53B48B1
   TheVPCVpcIdD346CDBA:
     Value:
       Ref: TheVPC92636AB0
     Export:
-      Name: Vpc:TheVPCVpcIdD346CDBA
+      Name: VPC:TheVPCVpcIdD346CDBA
   TheVPCVpnGatewayId86251C09:
     Export:
-      Name: Vpc:TheVPCVpnGatewayId86251C09
+      Name: VPC:TheVPCVpnGatewayId86251C09

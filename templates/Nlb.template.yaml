@@ -2,15 +2,14 @@ Resources:
   LB8A12904C:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      LoadBalancerAttributes:
-        []
+      LoadBalancerAttributes: []
       Scheme: internal
       Subnets:
         - Fn::Select:
             - 0
             - Fn::Split:
                 - ","
-                - Fn::ImportValue: Vpc:TheVPCPrivateSubnetIDsE53B48B1
+                - Fn::ImportValue: VPC:TheVPCPrivateSubnetIDsE53B48B1
       Type: network
     Metadata:
       aws:cdk:path: NLB/LB/Resource
@@ -19,7 +18,7 @@ Resources:
     Properties:
       DefaultActions:
         - TargetGroupArn:
-            Ref: LBapi1listenerECSGroupB9F61AC8
+            Ref: LBapi1listenerNLBTarget1Group29BF7C7A
           Type: forward
       LoadBalancerArn:
         Ref: LB8A12904C
@@ -27,26 +26,24 @@ Resources:
       Protocol: TCP
     Metadata:
       aws:cdk:path: NLB/LB/api1_listener/Resource
-  LBapi1listenerECSGroupB9F61AC8:
+  LBapi1listenerNLBTarget1Group29BF7C7A:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      Port: 80
+      Port: 2000
       Protocol: TCP
-      TargetGroupAttributes:
-        []
-      Targets:
-        []
+      TargetGroupAttributes: []
+      Targets: []
       TargetType: ip
       VpcId:
-        Fn::ImportValue: Vpc:TheVPCVpcIdD346CDBA
+        Fn::ImportValue: VPC:TheVPCVpcIdD346CDBA
     Metadata:
-      aws:cdk:path: NLB/LB/api1_listener/ECSGroup/Resource
+      aws:cdk:path: NLB/LB/api1_listener/NLB_Target_1Group/Resource
   LBapi2listener9434057D:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
       DefaultActions:
         - TargetGroupArn:
-            Ref: LBapi2listenerECSGroup8098F78C
+            Ref: LBapi2listenerNLBTarget2Group98C31D4F
           Type: forward
       LoadBalancerArn:
         Ref: LB8A12904C
@@ -54,26 +51,24 @@ Resources:
       Protocol: TCP
     Metadata:
       aws:cdk:path: NLB/LB/api2_listener/Resource
-  LBapi2listenerECSGroup8098F78C:
+  LBapi2listenerNLBTarget2Group98C31D4F:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      Port: 80
+      Port: 3000
       Protocol: TCP
-      TargetGroupAttributes:
-        []
-      Targets:
-        []
+      TargetGroupAttributes: []
+      Targets: []
       TargetType: ip
       VpcId:
-        Fn::ImportValue: Vpc:TheVPCVpcIdD346CDBA
+        Fn::ImportValue: VPC:TheVPCVpcIdD346CDBA
     Metadata:
-      aws:cdk:path: NLB/LB/api2_listener/ECSGroup/Resource
+      aws:cdk:path: NLB/LB/api2_listener/NLB_Target_2Group/Resource
   LBapi3listenerC7F2EA36:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
       DefaultActions:
         - TargetGroupArn:
-            Ref: LBapi3listenerECSGroup36DADFA3
+            Ref: LBapi3listenerNLBTarget3Group07F1D5F8
           Type: forward
       LoadBalancerArn:
         Ref: LB8A12904C
@@ -81,54 +76,40 @@ Resources:
       Protocol: TCP
     Metadata:
       aws:cdk:path: NLB/LB/api3_listener/Resource
-  LBapi3listenerECSGroup36DADFA3:
+  LBapi3listenerNLBTarget3Group07F1D5F8:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      Port: 80
+      Port: 4000
       Protocol: TCP
-      TargetGroupAttributes:
-        []
-      Targets:
-        []
+      TargetGroupAttributes: []
+      Targets: []
       TargetType: ip
       VpcId:
-        Fn::ImportValue: Vpc:TheVPCVpcIdD346CDBA
+        Fn::ImportValue: VPC:TheVPCVpcIdD346CDBA
     Metadata:
-      aws:cdk:path: NLB/LB/api3_listener/ECSGroup/Resource
+      aws:cdk:path: NLB/LB/api3_listener/NLB_Target_3Group/Resource
   CDKMetadata:
     Type: AWS::CDK::Metadata
     Properties:
-      Modules: "@aws-cdk/assets=0.28.0,@aws-cdk/assets-docker=0.28.0,@aws-cdk/aws-apig\
-        ateway=0.28.0,@aws-cdk/aws-applicationautoscaling=0.28.0,@aws-cdk/aws-a\
-        utoscaling=0.28.0,@aws-cdk/aws-autoscaling-common=0.28.0,@aws-cdk/aws-c\
-        ertificatemanager=0.28.0,@aws-cdk/aws-cloudformation=0.28.0,@aws-cdk/aw\
-        s-cloudwatch=0.28.0,@aws-cdk/aws-codedeploy-api=0.28.0,@aws-cdk/aws-ec2\
-        =0.28.0,@aws-cdk/aws-ecr=0.28.0,@aws-cdk/aws-ecs=0.28.0,@aws-cdk/aws-el\
-        asticloadbalancingv2=0.28.0,@aws-cdk/aws-events=0.28.0,@aws-cdk/aws-iam\
-        =0.28.0,@aws-cdk/aws-kms=0.28.0,@aws-cdk/aws-lambda=0.28.0,@aws-cdk/aws\
-        -logs=0.28.0,@aws-cdk/aws-route53=0.28.0,@aws-cdk/aws-s3=0.28.0,@aws-cd\
-        k/aws-s3-notifications=0.28.0,@aws-cdk/aws-servicediscovery=0.28.0,@aws\
-        -cdk/aws-sns=0.28.0,@aws-cdk/aws-sqs=0.28.0,@aws-cdk/cdk=0.28.0,@aws-cd\
-        k/cx-api=0.28.0,@aws-cdk/region-info=0.28.0,jsii-runtime=node.js/v11.2.\
-        0"
+      Modules: aws-cdk=0.29.0,@aws-cdk/assets=0.28.0,@aws-cdk/assets-docker=0.28.0,@aws-cdk/aws-apigateway=0.28.0,@aws-cdk/aws-applicationautoscaling=0.28.0,@aws-cdk/aws-autoscaling=0.28.0,@aws-cdk/aws-autoscaling-common=0.28.0,@aws-cdk/aws-certificatemanager=0.28.0,@aws-cdk/aws-cloudformation=0.28.0,@aws-cdk/aws-cloudwatch=0.28.0,@aws-cdk/aws-codedeploy-api=0.28.0,@aws-cdk/aws-ec2=0.28.0,@aws-cdk/aws-ecr=0.28.0,@aws-cdk/aws-ecs=0.28.0,@aws-cdk/aws-elasticloadbalancingv2=0.28.0,@aws-cdk/aws-events=0.28.0,@aws-cdk/aws-iam=0.28.0,@aws-cdk/aws-kms=0.28.0,@aws-cdk/aws-lambda=0.28.0,@aws-cdk/aws-logs=0.28.0,@aws-cdk/aws-route53=0.28.0,@aws-cdk/aws-s3=0.28.0,@aws-cdk/aws-s3-notifications=0.28.0,@aws-cdk/aws-servicediscovery=0.28.0,@aws-cdk/aws-sns=0.28.0,@aws-cdk/aws-sqs=0.28.0,@aws-cdk/cdk=0.28.0,@aws-cdk/cx-api=0.28.0,@aws-cdk/region-info=0.28.0,jsii-runtime=node.js/v11.2.0
 Outputs:
   LBLoadBalancerArn4723B1BD:
     Value:
       Ref: LB8A12904C
     Export:
       Name: NLB:LBLoadBalancerArn4723B1BD
-  ExportsOutputRefLBapi1listenerECSGroupB9F61AC8C200B214:
+  ExportsOutputRefLBapi1listenerNLBTarget1Group29BF7C7ABF97B42C:
     Value:
-      Ref: LBapi1listenerECSGroupB9F61AC8
+      Ref: LBapi1listenerNLBTarget1Group29BF7C7A
     Export:
-      Name: NLB:ExportsOutputRefLBapi1listenerECSGroupB9F61AC8C200B214
-  ExportsOutputRefLBapi2listenerECSGroup8098F78C20773358:
+      Name: NLB:ExportsOutputRefLBapi1listenerNLBTarget1Group29BF7C7ABF97B42C
+  ExportsOutputRefLBapi2listenerNLBTarget2Group98C31D4F01B536BB:
     Value:
-      Ref: LBapi2listenerECSGroup8098F78C
+      Ref: LBapi2listenerNLBTarget2Group98C31D4F
     Export:
-      Name: NLB:ExportsOutputRefLBapi2listenerECSGroup8098F78C20773358
-  ExportsOutputRefLBapi3listenerECSGroup36DADFA3C4AB8818:
+      Name: NLB:ExportsOutputRefLBapi2listenerNLBTarget2Group98C31D4F01B536BB
+  ExportsOutputRefLBapi3listenerNLBTarget3Group07F1D5F84B3E76A1:
     Value:
-      Ref: LBapi3listenerECSGroup36DADFA3
+      Ref: LBapi3listenerNLBTarget3Group07F1D5F8
     Export:
-      Name: NLB:ExportsOutputRefLBapi3listenerECSGroup36DADFA3C4AB8818
+      Name: NLB:ExportsOutputRefLBapi3listenerNLBTarget3Group07F1D5F84B3E76A1

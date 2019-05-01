@@ -12,8 +12,7 @@ interface ECSStackProps {
 
 class ECSStack extends cdk.Stack {
     public readonly service1: ecs.FargateService;
-    public readonly service2: ecs.FargateService;
-    public readonly service3: ecs.FargateService;
+
 
     constructor(parent: cdk.App, name: string, props: ECSStackProps) {
         super(parent, name);
@@ -37,13 +36,11 @@ class ECSStack extends cdk.Stack {
         ecs.LogDriver
         taskDefinition.addContainer("WebContainer", {
             // Use an image from DockerHub for now, change this to image from ecr repository
-            image: ecs.ContainerImage.fromRegistry("maddulap/node-web-app"),
+            image: ecs.ContainerImage.fromRegistry("maddulap/node-hello-world-api-multiple-ports"),
             logging: new ecs.AwsLogDriver(this, 'TaskLogging', { streamPrefix: 'service1' })
             
             // ... other options here ...
-        }).addPortMappings({
-            containerPort: 80
-          });
+        }).addPortMappings({"containerPort":2000},{"containerPort":3000},{"containerPort":4000});
 
 
         const service1 = new ecs.FargateService(this, 'Service1', {
@@ -51,24 +48,9 @@ class ECSStack extends cdk.Stack {
             taskDefinition,
             desiredCount: 1
           });
-        
-        const service2 = new ecs.FargateService(this, 'Service2', {
-            cluster,
-            taskDefinition,
-            desiredCount: 1
-          });  
-
-        const service3 = new ecs.FargateService(this, 'Service3', {
-            cluster,
-            taskDefinition,
-            desiredCount: 1
-          });          
-          //why doesn't the keyboard key travel look funky. I hope my brain adapts to this one. ahh the left anf rightkey are much bigger than th eup & down.
-          //this will get some using to . whats the white notch on top left of the keyboard. the function key row is super big for some reason. I think taller than the regular keys as well. weird.
 
           this.service1= service1;
-          this.service2= service2;
-          this.service3= service3;  
+
 
 
 
