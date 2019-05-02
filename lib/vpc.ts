@@ -13,7 +13,7 @@ class VPCStack extends cdk.Stack {
         const vpc = new ec2.VpcNetwork(this, 'TheVPC', {
             cidr: '10.0.0.0/16',
             natGateways: 1,
-            vpnGateway: false,
+            vpnGateway: true,
             maxAZs:1 ,
             subnetConfiguration: [
                 {

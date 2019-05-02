@@ -142,6 +142,35 @@ Resources:
         Ref: TheVPCIGWFA25CC08
     Metadata:
       aws:cdk:path: VPC/TheVPC/VPCGW
+  TheVPCVpnGateway97BC18B3:
+    Type: AWS::EC2::VPNGateway
+    Properties:
+      Type: ipsec.1
+      Tags:
+        - Key: Name
+          Value: VPC/TheVPC
+    Metadata:
+      aws:cdk:path: VPC/TheVPC/VpnGateway
+  TheVPCVPCVPNGW7C629261:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId:
+        Ref: TheVPC92636AB0
+      VpnGatewayId:
+        Ref: TheVPCVpnGateway97BC18B3
+    Metadata:
+      aws:cdk:path: VPC/TheVPC/VPCVPNGW
+  TheVPCRoutePropagation577346C9:
+    Type: AWS::EC2::VPNGatewayRoutePropagation
+    Properties:
+      RouteTableIds:
+        - Ref: TheVPCApplicationSubnet1RouteTable0FE2A3D8
+      VpnGatewayId:
+        Ref: TheVPCVpnGateway97BC18B3
+    DependsOn:
+      - TheVPCVPCVPNGW7C629261
+    Metadata:
+      aws:cdk:path: VPC/TheVPC/RoutePropagation
   s3vpcendpoint:
     Type: AWS::EC2::VPCEndpoint
     Properties:
@@ -227,5 +256,7 @@ Outputs:
     Export:
       Name: VPC:TheVPCVpcIdD346CDBA
   TheVPCVpnGatewayId86251C09:
+    Value:
+      Ref: TheVPCVpnGateway97BC18B3
     Export:
       Name: VPC:TheVPCVpnGatewayId86251C09
